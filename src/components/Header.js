@@ -1,11 +1,17 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
-function Header() {
+function Header(props) {
   return (
     <header className="header">
       <div className="header__logo"></div>
+      <div className='header__info'>
+        <div className="header__email">{props.mail}</div>
+        <Link to={props.to} className="header__title">{props.title}</Link>
+      </div>
     </header>
   );
 }
 
 export default Header;
+
