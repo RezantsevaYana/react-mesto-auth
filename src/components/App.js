@@ -77,6 +77,26 @@ function App() {
       });
   }, []);
 
+  // проверка токенов авторизованных пользователей, вернувшихся в приложение
+  React.useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (jwt) (
+      // проверяем токен
+      auth.checkToken(jwt)
+        .then((res) => {
+          // авторизуем пользователя, если токен найден, перенаправляя его на главную страницу
+          if (res) {
+            setMail(res.data.email)
+            setIsLoggedIn(true);
+            navigate('/')
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    )
+  }, [navigate])
+
   // попап добавления карточки
 
   function handleAddPlaceSubmit(newCard) {
@@ -220,7 +240,7 @@ function App() {
   // обработчик регистрации пользователя
   function onRegister(email, password) {
     auth.register(email, password)
-      .then(res => {
+      .then((res) => {
         setTitle('Вы успешно зарегистрировались!')
         setImage(register)
         console.log(res)
@@ -241,12 +261,19 @@ function App() {
         setIsLoggedIn(true);
         console.log(res)
         navigate('/')
+        localStorage.setItem('jwt', res.token)
       })
       .catch((err) => {
         console.log(err);
       })
   }
 
+  // удаление токена при выходе
+  function signOut(){
+    localStorage.removeItem('jwt');
+    navigate('/sign-in');
+    setIsLoggedIn(false)
+  }
 
 
   return (
@@ -254,7 +281,7 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
     <Routes>
-      <Route path='/' element={<Header mail={email} title='Выйти' to='/sign-in'/>}>
+      <Route path='/' element={<Header mail={email} title='Выйти' onClick={signOut} to=''/>}>
       </Route>
       <Route path='/sign-up' element={<Header mail='' title='Войти' to='/sign-in'/>}>
       </Route>
@@ -280,10 +307,8 @@ function App() {
               />}></Route>
        <Route element={<Navigate to = {isLoggedIn? '/' : '/sign-in'}/>} />
     </Routes>
+    {isLoggedIn ? <Footer /> : <></> }
 
-    <Footer />
-
-  
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
@@ -331,10 +356,8 @@ function App() {
 
 export default App;
 
+// ошибка при входе -> возможно проблемы с запросом токена, проверить сохранение токена в локальном хранилище
 
-// сделать так, чтобы ошибка о регистрации не всплывала при каждом нажатии в инпуте
-// сохранить токен в локальном хранилище, удалять его при выходе
-// поправить хэдер, то есть на главной странице реализовать отображение маила
 
 
 

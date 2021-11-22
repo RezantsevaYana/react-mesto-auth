@@ -1,6 +1,4 @@
 import React from "react";
-import Header from "./Header";
-
 
 function Login(props) {
     const [email, setEmail] = React.useState('')
@@ -26,7 +24,7 @@ function Login(props) {
         <h2 className='main-page__title'>Вход</h2>
         <form className="main-page__form" onSubmit={handleSubmit}>
             <input className="main-page__input"
-                value="" id="email-input"
+                id="log-email-input"
                 type="email"
                 name='email'
                 placeholder="Email"
@@ -34,7 +32,7 @@ function Login(props) {
                 onChange={handleMailChange}>
             </input>
             <input className="main-page__input"
-                    value="" id="password-input" 
+                    id="password-input" 
                     type="password" 
                     name='password' 
                     placeholder="Пароль"

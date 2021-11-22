@@ -7,7 +7,6 @@ function InfoTooLtip(props) {
             <button className='popup__close' type="button" onClick={props.onClose}></button>
             <img src={props.image} className='popup-info__logo' alt='Результат регистрации'/>
             <h2 className='popup-info__title'>{props.title}</h2>
-
         </div>
 
     </section>
