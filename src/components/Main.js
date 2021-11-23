@@ -9,7 +9,6 @@ function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
   
   return (
-    <>
       <main className="content">
         <section className="profile">
           <button className="profile__avatar-button" onClick={props.onEditAvatar}>
@@ -53,7 +52,6 @@ function Main(props) {
           })}
         </section>
       </main>
-    </>
   );
 }
 

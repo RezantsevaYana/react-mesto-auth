@@ -20,7 +20,6 @@ function Register(props) {
   }
 
   return (
-    <>
       <div className="main-page">
         <h2 className="main-page__title">Регистрация</h2>
         <form className="main-page__form" onSubmit={handleSubmit}>
@@ -55,7 +54,6 @@ function Register(props) {
           </Link>
         </p>
       </div>
-    </>
   );
 }
 

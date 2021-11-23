@@ -94,7 +94,7 @@ function App() {
         .catch((err) => {
           console.log(err);
         });
-  }, []);
+  }, [navigate]);
 
   // попап добавления карточки
 
@@ -291,44 +291,55 @@ function App() {
       <div className="page">
         <Routes>
           <Route
-            path="/"
+            path="/sign-in"
             element={
-              <Header mail={email} title="Выйти" onClick={signOut} to="" isLoggedIn={isLoggedIn} />
+              <>
+                <Header
+                  mail=""
+                  title="Регистрация"
+                  to="/sign-up"
+                  isLoggedIn={isLoggedIn}
+                />
+                <Login onlogin={onlogin} />
+              </>
             }
           ></Route>
           <Route
             path="/sign-up"
-            element={<Header mail="" title="Войти" to="/sign-in" isLoggedIn={isLoggedIn} />}
-          ></Route>
-          <Route
-            path="/sign-in"
-            element={<Header mail="" title="Регистрация" to="/sign-up" isLoggedIn={isLoggedIn} />}
-          ></Route>
-        </Routes>
-        <Routes>
-          <Route path="/sign-in" element={<Login onlogin={onlogin} />}></Route>
-          <Route
-            path="/sign-up"
-            element={<Register onRegister={onRegister} />}
+            element={
+              <>
+                <Header mail="" title="Войти" to="/sign-in" isLoggedIn={isLoggedIn} />
+                <Register onRegister={onRegister} />
+              </>
+            }
           ></Route>
           <Route
             path="/"
             element={
-              <ProtectedRoute
-                component={Main}
-                loggedIn={isLoggedIn}
-                onEditProfile={handleEditProfileClick}
-                onAddPlace={handleAddPlaceClick}
-                onEditAvatar={handleEditAvatarClick}
-                onCardClick={handleCardClick}
-                onCardLike={handleCardLike}
-                onCardDelete={handleDeleteCard}
-                cards={cards}
-              />
+              <>
+                <Header
+                  mail={email}
+                  title="Выйти"
+                  onClick={signOut}
+                  to=""
+                  isLoggedIn={isLoggedIn}
+                />
+                <ProtectedRoute
+                  component={Main}
+                  loggedIn={isLoggedIn}
+                  onEditProfile={handleEditProfileClick}
+                  onAddPlace={handleAddPlaceClick}
+                  onEditAvatar={handleEditAvatarClick}
+                  onCardClick={handleCardClick}
+                  onCardLike={handleCardLike}
+                  onCardDelete={handleDeleteCard}
+                  cards={cards}
+                />
+              </>
             }
           ></Route>
           <Route element={<Navigate to={isLoggedIn ? "/" : "/sign-in"} />} />
-        </Routes>
+        </Routes>;
         {isLoggedIn ? <Footer /> : <></>}
 
         <EditProfilePopup

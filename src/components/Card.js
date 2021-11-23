@@ -36,7 +36,6 @@ function Card(props) {
   }
 
   return (
-    <section className="elements">
       <article className="element">
         <button
           className={cardDeleteButtonClassName}
@@ -61,7 +60,6 @@ function Card(props) {
           </div>
         </div>
       </article>
-    </section>
   );
 }
 

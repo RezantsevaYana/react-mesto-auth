@@ -6,6 +6,13 @@ function AddPlacePopup(props) {
   const [name, setName] = React.useState("");
   const [link, setLink] = React.useState("");
 
+  // очищение полей добавления карточек при новом открытии попапа
+
+  React.useEffect(() => {
+    setName('');
+    setLink('');
+  }, [props.isOpen]);
+
   // обработчики изменения инпутов
 
   function handleNameChange(evt) {

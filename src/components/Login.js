@@ -19,7 +19,6 @@ function Login(props) {
   }
 
   return (
-    <>
       <div className="main-page">
         <h2 className="main-page__title">Вход</h2>
         <form className="main-page__form" onSubmit={handleSubmit}>
@@ -46,7 +45,6 @@ function Login(props) {
           </button>
         </form>
       </div>
-    </>
   );
 }
 
