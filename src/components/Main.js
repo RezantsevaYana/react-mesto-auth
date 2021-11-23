@@ -3,7 +3,6 @@ import pencilLogo from "../images/pancil.svg";
 import plusLogo from "../images/plus.svg";
 import Card from "./Card.js";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-import Header from "./Header";
 
 function Main(props) {
   // подпишем компонент на контекст

@@ -60,5 +60,6 @@
 @import url(./blocks/popup/__container-info/popup__container-info.css);
 @import url(./blocks/popup-info/__logo/popup-info__logo.css);
 @import url(./blocks/popup-info/__title/popup-info__title.css);
+@import url(./blocks/header/__title-main/header__title-main.css);
 
 
